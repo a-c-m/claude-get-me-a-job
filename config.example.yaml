@@ -1,0 +1,26 @@
+# CV Project Configuration
+# Copy this file to config.yaml and fill in your details
+# config.yaml is gitignored to keep your personal info private
+
+# Blog URL for the agent to crawl
+blog_url: ""
+
+# GitHub username for contribution analysis
+github_username: ""
+
+# LinkedIn profile URL (public profile)
+linkedin_url: ""
+
+# Target roles (define 2-3 positions you're aiming for)
+target_roles:
+  - title: ""
+    company_type: ""  # e.g., "startup", "enterprise", "agency"
+    keywords: []
+  - title: ""
+    company_type: ""
+    keywords: []
+
+# Git repositories to analyze (paths or URLs)
+repositories:
+  - path: ""
+    description: ""

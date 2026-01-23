@@ -1,0 +1,22 @@
+# User configuration (contains personal URLs and paths)
+config.yaml
+
+# Local Claude overrides
+CLAUDE.local.md
+
+# OS files
+.DS_Store
+
+# Personal data directories (contain CV content, analysis, outputs)
+sources/
+outputs/
+analysis/
+
+# Personal agent context (copy from AGENTS.md.example)
+AGENTS.md
+
+# Task tracking database (contains personal task details)
+.beads/
+
+# Node dependencies (can be reinstalled)
+node_modules/
