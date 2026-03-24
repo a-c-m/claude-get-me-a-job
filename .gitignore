@@ -12,11 +12,8 @@ sources/
 outputs/
 analysis/
 
-# Personal agent context (copy from AGENTS.md.example)
+# Personal agent context (built by Claude during setup)
 AGENTS.md
-
-# Task tracking database (contains personal task details)
-.beads/
 
 # Node dependencies (can be reinstalled)
 node_modules/

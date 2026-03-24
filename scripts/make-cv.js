@@ -25,7 +25,8 @@ function convertMarkdown(md) {
     .replace(/<!--\s*pagebreak\s*-->/gi, '|||PAGEBREAK|||')
 
     // Float right header (special case for H1) - use <!-- float-right-header -->
-    .replace(/^(#\s+.*)\n<!--\s*float-right-header\s*-->\n([\s\S]*?)\n<!--\s*\/float-right-header\s*-->/gim, '|||FLOAT_RIGHT_HEADER|||$2|||END_FLOAT_RIGHT_HEADER|||\n$1')
+    // Allow optional blank lines between heading and comment
+    .replace(/^(#\s+.*)\n\s*\n?<!--\s*float-right-header\s*-->\n([\s\S]*?)\n<!--\s*\/float-right-header\s*-->/gim, '|||FLOAT_RIGHT_HEADER|||$2|||END_FLOAT_RIGHT_HEADER|||\n$1')
 
     // Float right (BEFORE escaping HTML) - use <!-- float-right -->content<!-- /float-right -->
     // Move it to before the previous line (to float next to headings)

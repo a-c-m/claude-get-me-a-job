@@ -1,222 +1,241 @@
 # Claude Get Me A Job
 
-An AI-assisted career toolkit for optimizing your CV, LinkedIn profile, and job applications. Uses Claude Code to analyze your work history and generate tailored, ATS-optimized materials.
+An AI-assisted career toolkit that helps you build better CVs, optimize your LinkedIn profile, and create tailored job applications. Works for any role — technical or non-technical.
+
+## Time Investment
+
+Your first session takes about **30-45 minutes** and gets you a full set of tailored CVs. Here's what to expect:
+
+| Phase | What Happens | Your Time | Waiting Time |
+|-------|-------------|-----------|-------------|
+| Setup | Answer a few questions, add your CV | 5 min | — |
+| Discovery | Claude gathers data from your sources | 2 min | 5 min |
+| Interview | Claude asks you about your achievements | 5-15 min | — |
+| LinkedIn | Review optimization recommendations | 2 min | 1 min |
+| CV Generation | Review role-specific CVs | 5 min | 2 min |
+
+After that, applying to a specific job takes about **10 minutes** each — you paste the job description and Claude produces a tailored CV, cover letters, and interview prep.
 
 ## What This Does
 
-1. **Gathers Context** - Analyzes your git commits, existing CV, LinkedIn, and blog posts
-2. **Builds Achievement Database** - Extracts quantified accomplishments with metrics
+1. **Gathers Your Context** - Analyzes your CV, LinkedIn, blog, articles, and any documents you provide
+2. **Builds an Achievement Database** - Extracts and organizes your accomplishments with metrics
 3. **Optimizes LinkedIn** - Provides specific recommendations for profile improvements
 4. **Generates Role-Specific CVs** - Creates tailored versions for different target roles
 5. **Streamlines Applications** - Produces customized CVs, cover letters, and prep materials per job
 
-## Quick Start
+## How It Works
 
-### 1. Install Dependencies
+This project uses [Claude Code](https://claude.ai/code) as an AI assistant that reads your career materials and helps you produce polished, tailored outputs. You have a conversation with Claude, and it does the heavy lifting — you review and refine.
+
+**You don't need to be technical.** Claude will guide you through setup conversationally.
+
+## Quick Start — One Prompt To Get Going
+
+### Step 1: Open the Claude Code App
+
+If you haven't already, download [Claude Code](https://claude.ai/code) and open it. You'll see a text input where you can type or paste messages.
+
+### Step 2: Create a Folder
+
+Claude needs a place to work. Before pasting the prompt:
+
+1. Create a new folder on your computer for this project (e.g. `claude-get-me-a-job` on your Desktop or in Documents)
+2. In the Claude Code app, open that folder — you can drag it onto the app window, or use **File > Open Folder**
+3. You should see the folder name in the app header
+
+### Step 3: Paste This Prompt
+
+Copy and paste this into the Claude Code text input:
+
+```
+I'd like to set up the "Claude Get Me A Job" career toolkit.
+
+Please clone https://github.com/a-c-m/claude-get-me-a-job.git into my
+current directory (or pull it if it already exists), run npm install,
+then read the CLAUDE.md file and walk me through the setup process
+step by step.
+
+I'll need help with:
+- Configuring my details (name, LinkedIn, target roles, etc.)
+- Adding my CV (I may have it as a Word document or PDF)
+- Gathering context from my online presence
+- Building my achievement database
+
+Please guide me conversationally — I don't want to edit config files manually.
+```
+
+### Step 4: Follow Along
+
+That's it. Claude handles the rest — cloning the code, installing dependencies, and walking you through each step conversationally. It will ask you questions and you just answer them.
+
+**Tip:** Claude may ask for permission to run commands (like installing software). This is normal — just click "Allow" when prompted. These are safe operations that set up the project on your computer.
+
+### What Happens Next
+
+Claude will:
+1. **Ask you a few questions** — your name, LinkedIn URL, what roles you're targeting, etc.
+2. **Ask for your CV** — this is the most important input. You can provide:
+   - A **PDF** (most common — just drop it in the folder Claude tells you)
+   - A **Word document (.docx)** — Claude will automatically convert it to readable text
+   - A **text or markdown file** — works directly
+3. **Gather context** from your LinkedIn, blog, GitHub, or any URLs you share
+4. **Show you what it found** and ask you to review before continuing
+5. **Build your achievement database** and check in again
+6. **Generate tailored CVs** for your target roles
+
+You're always in control — Claude checks in at every stage and won't proceed until you're happy.
+
+### If You Prefer Manual Setup
+
+<details>
+<summary>Click to expand manual setup steps</summary>
 
 ```bash
 # Clone and enter the project
 git clone https://github.com/a-c-m/claude-get-me-a-job.git
 cd claude-get-me-a-job
 
-# Install Node dependencies (for PDF generation)
+# Install dependencies
 npm install
 
-# Install Beads task manager (optional but recommended)
-npm install -g @anthropic-ai/bd
-bd init
-```
-
-### 2. Configure Your Settings
-
-```bash
-# Copy the example config
+# Copy the config template
 cp config.example.yaml config.yaml
 
-# Edit with your details
-# - blog_url: Your blog/website URL
-# - github_username: Your GitHub username
-# - linkedin_url: Your LinkedIn profile URL
-# - target_roles: 2-3 roles you're targeting
-# - repositories: Paths to repos you want analyzed
+# Add your CV to the sources folder
+mkdir -p sources/current-cv
+# Copy your CV file into sources/current-cv/
+
+# Start Claude Code and say "help me set up"
 ```
 
-### 3. Add Your Materials
+</details>
 
-Create the required directories and add your source materials:
+## Example Target Roles
 
-```bash
-mkdir -p sources/current-cv sources/linkedin sources/blog-cache
-mkdir -p outputs/cv-versions outputs/linkedin-updates outputs/applications
-mkdir -p analysis/achievements analysis/skills-inventory
-```
+This works for any role. Some examples:
 
-Add your files:
-- `sources/current-cv/` - Your existing CV (PDF, DOCX, or Markdown)
-- `sources/linkedin/` - LinkedIn data export or profile screenshots
-
-### 4. Set Up Agent Context
-
-```bash
-# Copy the agent context template
-cp AGENTS.md.example AGENTS.md
-
-# The AI will help you fill this in as you work
-```
+| Technical | Non-Technical |
+|-----------|--------------|
+| Engineering Manager | Project Coordinator |
+| Full Stack Developer | Client Services Lead |
+| CTO / VP Engineering | Operations Manager |
+| Data Analyst | Marketing Manager |
+| DevOps Engineer | Account Manager |
 
 ## Workflow Phases
 
-### Phase 1: Discovery (Context Gathering)
+### Phase 1: Discovery
+Claude analyzes your materials and builds a picture of your experience. It then **checks in** to show you what it found and asks you to correct anything.
 
-Start a Claude Code session and ask it to analyze your materials:
+### Phase 2: Discovery Interview
+Claude **interviews you conversationally** to surface achievements, metrics, and experiences that aren't captured in your CV or online presence. Most people undersell themselves — this fixes that.
 
-```
-Analyze my current CV and LinkedIn profile. Extract all achievements
-and build an initial skills inventory.
-```
+Claude will ask about:
+- Your proudest moments at each role
+- Team sizes, budgets, and scale
+- Before/after metrics for things you improved
+- Hidden achievements (mentoring, speaking, side projects, awards)
+- Skills that don't show up on paper
 
-The agent will:
-- Read your CV and extract accomplishments
-- Analyze your LinkedIn for additional context
-- Crawl your blog for thought leadership evidence
-- Analyze git commits for technical contributions
-- Create `analysis/achievements/achievements.md`
-- Create `analysis/skills-inventory/skills.md`
+It's designed to feel like a helpful chat, not an interrogation. You can trigger this anytime by saying "interview me" or "help me dig into my achievements."
 
-### Phase 2: LinkedIn Optimization
+### Phase 3: LinkedIn Optimization
+Specific recommendations for improving your profile visibility for your target roles.
 
-```
-Review my LinkedIn profile and provide specific recommendations
-for improving visibility for [target roles].
-```
+### Phase 4: CV Generation
+Role-specific CV versions, each tailored to emphasize relevant experience. Claude shows you each one and asks for feedback before moving on.
 
-Output: `outputs/linkedin-updates/recommendations.md`
-
-### Phase 3: CV Generation
-
-```
-Generate role-specific CV versions for my target roles based on
-the achievements database.
-```
-
-This creates tailored CVs in `outputs/cv-versions/`:
-- Each version emphasizes relevant experience
-- Keywords optimized for ATS systems
-- Formatted for 2-page PDF output
-
-### Phase 4: Job Applications
-
-When you find a job to apply for:
-
-```
-I want to apply to [Company] for [Role]. Here's the JD: [paste or URL]
-```
-
-The agent creates a complete application package in `outputs/applications/`:
-- Parsed job description with keywords
+### Phase 5: Job Applications
+When you find a job to apply for, give Claude the job description and it creates:
+- Tailored CV (Markdown, HTML, PDF)
+- Cover letters (short + long versions)
 - Company research
-- Tailored CV (MD, HTML, PDF)
-- Cover letters (short + long)
 - Interview prep notes
 
 See [APPLICATIONS.md](APPLICATIONS.md) for the full workflow.
 
+## What You Can Provide
+
+The more you give Claude, the better the output:
+
+| Source | How to Add | Priority |
+|--------|-----------|----------|
+| **Your current CV** | Drop into `sources/current-cv/` (PDF, Word, or text) | Essential |
+| **LinkedIn URL** | Tell Claude during setup | High |
+| **Blog/website** | Tell Claude during setup | Medium |
+| **Articles & press** | Share URLs during setup | Medium |
+| **Documents & PDFs** | Point Claude to a folder to scan | Medium |
+| **GitHub** | Tell Claude your username | Optional |
+| **Code repositories** | Point Claude to repos on your machine (technical users only) | Optional |
+| **LinkedIn data export** | Settings > Data Privacy > Get a copy of your data | Nice to have |
+
 ## Project Structure
 
 ```
-/cv
-├── CLAUDE.md              # AI instructions and rules
-├── AGENTS.md              # Your context (gitignored after setup)
-├── AGENTS.md.example      # Template for agent context
-├── APPLICATIONS.md        # Job application workflow
-├── config.yaml            # Your config (gitignored)
-├── config.example.yaml    # Config template
+├── CLAUDE.md              # AI instructions (don't edit unless customizing)
+├── config.yaml            # Your settings (created during setup, gitignored)
+├── AGENTS.md              # Your context (built by Claude, gitignored)
 │
 ├── sources/               # Your input materials (gitignored)
-│   ├── current-cv/        # Existing CV files
+│   ├── current-cv/        # Your existing CV ← START HERE
 │   ├── linkedin/          # LinkedIn exports
-│   └── blog-cache/        # Cached blog posts
+│   ├── articles/          # Press, awards, articles
+│   └── documents/         # Any other relevant docs
 │
-├── analysis/              # Research outputs (gitignored)
-│   ├── achievements/      # Achievement database
-│   └── skills-inventory/  # Skills mapping
+├── analysis/              # What Claude discovers (gitignored)
+│   ├── achievements/      # Your achievement database
+│   └── skills-inventory/  # Your skills mapping
 │
-├── outputs/               # Generated materials (gitignored)
+├── outputs/               # What Claude generates (gitignored)
 │   ├── cv-versions/       # Role-specific CVs
 │   ├── linkedin-updates/  # Profile recommendations
-│   └── applications/      # Job application packages
+│   └── applications/      # Per-job application packages
 │
 └── scripts/
-    └── make-cv.js         # Markdown to PDF converter
+    ├── make-cv.js         # Converts Markdown CVs to PDF
+    └── read-docx.js       # Converts Word documents to readable text
 ```
 
 ## PDF Generation
 
-Convert your markdown CVs to PDF:
+Convert your markdown CVs to styled PDFs:
 
 ```bash
-# Generate HTML only
+# HTML only
 node scripts/make-cv.js outputs/cv-versions/my-cv.md
 
-# Generate HTML + PDF with page count validation
+# HTML + PDF with page count check
 node scripts/make-cv.js outputs/cv-versions/my-cv.md --pdf
 ```
 
-The script:
-- Converts markdown to styled HTML
-- Generates print-ready PDF via Playwright
-- Validates 2-page limit
-- Supports `<!-- pagebreak -->` for manual breaks
+## Customizing Your CV
 
-## Task Management with Beads
-
-This project uses [Beads](https://github.com/anthropics/beads) for persistent task tracking:
-
-```bash
-bd ready              # Show tasks ready to work on
-bd list               # View all tasks
-bd create "Task"      # Add a new task
-bd close <id>         # Complete a task
-bd dep add <a> <b>    # Add dependency (a depends on b)
-```
-
-Tasks persist across Claude Code sessions, so work continues where you left off.
-
-## Key Files Explained
-
-| File | Purpose |
-|------|---------|
-| `CLAUDE.md` | Instructions for the AI - formatting rules, workflow phases, best practices |
-| `AGENTS.md` | Your personal context - achievements, profile summary, verified facts |
-| `APPLICATIONS.md` | Job application workflow and checklist |
-| `config.yaml` | Your URLs, paths, and target role definitions |
-| `achievements.md` | Master database of your quantified accomplishments |
-| `skills.md` | Comprehensive skills inventory with evidence |
-
-## CV Formatting Best Practices
-
-The system follows these guidelines (configured in CLAUDE.md):
-
-- **Bold highlighting** for key metrics, company names, and awards
-- **2-page maximum** for most roles
-- **Active voice** and quantified achievements
-- **ATS optimization** with relevant keywords
-- **Clean page breaks** between major sections
+Want to change fonts, colors, or layout? See [CUSTOMIZING-CV.md](CUSTOMIZING-CV.md) for a full guide.
 
 ## Privacy
 
-The `.gitignore` excludes all personal data:
-- `config.yaml` (your URLs and paths)
-- `sources/` (your CV and LinkedIn data)
+Your personal data stays private. The `.gitignore` excludes:
+- `config.yaml` (your URLs and settings)
+- `sources/` (your CV and documents)
 - `analysis/` (extracted achievements)
 - `outputs/` (generated materials)
-- `.beads/` (task database)
+- `AGENTS.md` (your personal context)
 
-Only the templates and scripts are committed to the repo.
+Only the templates and scripts are in the repository.
+
+## Returning Sessions
+
+When you come back to this project, Claude remembers where you left off. It will:
+- Check your existing data and application progress
+- Ask how things are going
+- Suggest next steps based on what's already done
+
+Just open Claude Code in this folder and start chatting.
 
 ## Contributing
 
-This is a personal productivity tool, but contributions are welcome:
+Contributions welcome:
 - Improvements to `make-cv.js` for better PDF output
 - Additional workflow documentation
 - Bug fixes and enhancements

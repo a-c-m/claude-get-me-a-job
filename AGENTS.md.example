@@ -15,7 +15,7 @@ This project helps [YOUR NAME] improve their CV, LinkedIn profile, and job appli
 3. **[Role 3]** - Key focus areas, skills needed
 
 ### Project Goals
-- Analyze work history from multiple sources (git, CV, LinkedIn, blog)
+- Analyze work history from multiple sources (CV, LinkedIn, blog, articles, documents)
 - Build comprehensive skills inventory and achievements database
 - Generate role-specific CV versions
 - Produce LinkedIn optimization recommendations
@@ -25,43 +25,24 @@ This project helps [YOUR NAME] improve their CV, LinkedIn profile, and job appli
 ## 2. Key Files & Structure
 
 ```
-/cv
 ├── CLAUDE.md                           # Project instructions (read first)
 ├── AGENTS.md                           # This file - agent context
 ├── config.yaml                         # User config (gitignored) - has URLs, paths
-├── config.example.yaml                 # Template config
 │
 ├── sources/                            # INPUT: Raw materials
 │   ├── current-cv/[NAME].pdf           # Original CV
-│   ├── linkedin/                       # LinkedIn export PDFs
-│   └── blog-cache/                     # Cached blog posts as markdown
+│   ├── linkedin/                       # LinkedIn export
+│   ├── articles/                       # Press, awards, published articles
+│   └── documents/                      # Other relevant docs
 │
 ├── analysis/                           # Research & findings
 │   ├── achievements/achievements.md    # Main achievement database
-│   ├── skills-inventory/skills.md      # Comprehensive skills by category
-│   ├── blog-analysis.md                # Blog content analysis
-│   ├── cv-review.md                    # Original CV analysis
-│   ├── git-analysis.md                 # Repository commit analysis
-│   └── linkedin-analysis.md            # LinkedIn profile analysis
+│   └── skills-inventory/skills.md      # Comprehensive skills by category
 │
-├── outputs/                            # Generated materials
-│   ├── cv-versions/
-│   │   ├── [role-1].md
-│   │   ├── [role-2].md
-│   │   └── [role-3].md
-│   └── linkedin-updates/
-│       └── recommendations.md
-│
-└── .beads/                             # Task tracking (bd commands)
-```
-
-### Config File (config.yaml)
-```yaml
-blog_url: "[YOUR BLOG URL]"
-github_username: "[YOUR USERNAME]"
-linkedin_url: "[YOUR LINKEDIN URL]"
-repositories:
-  - path: "[PATH TO YOUR MAIN REPO]"
+└── outputs/                            # Generated materials
+    ├── cv-versions/                    # Role-specific CVs (MD, HTML, PDF)
+    ├── linkedin-updates/               # Profile recommendations
+    └── applications/                   # Per-job application packages
 ```
 
 ---
@@ -79,15 +60,12 @@ repositories:
 |---------|------|--------|-----------------|
 | [Company 1] | [Role] | [Dates] | [Achievement] |
 | [Company 2] | [Role] | [Dates] | [Achievement] |
-| [Company 3] | [Role] | [Dates] | [Achievement] |
 
-### Top Achievements (Verified with Metrics)
+### Top Achievements (Verified)
 
 1. **[Achievement 1]** - [Metric/outcome]
 2. **[Achievement 2]** - [Metric/outcome]
 3. **[Achievement 3]** - [Metric/outcome]
-4. **[Achievement 4]** - [Metric/outcome]
-5. **[Achievement 5]** - [Metric/outcome]
 
 ### Unique Differentiators
 - [What makes you stand out #1]
@@ -100,108 +78,56 @@ repositories:
 
 ### MUST USE - Verified High-Impact Facts
 
-**Executive Communication:**
-- [Key executive interactions]
-- [Notable clients you can name]
-- [High-value deals influenced]
+**Key Metrics:**
+- [Users/customers served]
+- [Team size managed]
+- [Budget responsibility]
+- [Revenue influenced]
 
 **Awards & Recognition:**
 - [Award 1] ([Year])
 - [Award 2] ([Year])
-- [Nominations]
 
-**Scale Metrics:**
-- [Users/customers served]
-- [Platform scale achieved]
+**Notable Facts:**
+- [Impressive client/company names]
+- [Scale achieved]
 - [Geographic reach]
-
-**Team Metrics:**
-- [Team size managed]
-- [Direct reports]
-- [People hired personally]
-- [People mentored/promoted]
-
-**Technical Metrics:**
-- [Key technical achievements]
-- [Performance improvements]
-- [Cost savings]
-
-**Cost/Business Metrics:**
-- [Budget responsibility]
-- [Cost reductions achieved]
-- [Revenue influenced]
 
 ---
 
 ## 5. Gaps & Areas Needing Work
 
-### Still Missing for Target Roles
+### Still Missing
 | Gap | Status | Notes |
 |-----|--------|-------|
 | [Gap 1] | [Status] | [Notes] |
-| [Gap 2] | [Status] | [Notes] |
-| [Gap 3] | [Status] | [Notes] |
 
-### Remaining Questions
-- [Question to explore #1]
-- [Question to explore #2]
-- [Question to explore #3]
-
-### Evidence Gaps by Role
-**[Role 1]:** [What's missing]
-**[Role 2]:** [What's missing]
-**[Role 3]:** [What's missing]
+### Questions to Explore
+- [Question #1]
+- [Question #2]
 
 ---
 
 ## 6. Style Guidelines
 
-### Your Communication Style (from blog analysis)
-- **Tone:** [Describe your natural tone]
+### Communication Style
+- **Tone:** [Your natural tone]
 - **Approach:** [Your typical approach]
-- **Philosophy:** [Core beliefs/principles]
 
-### Writing Guidelines
+### Writing Rules
 - Use active voice ("Built" not "Was responsible for building")
 - Quantify everything possible
 - Lead with impact, not responsibilities
 - Keep CV to 2 pages maximum
-- Avoid: buzzwords without substance, generic statements
-
-### Things to Avoid
-- Over-claiming (stay factual)
-- "Passionate about" or similar filler
-- Fabricating metrics not in source files
-- Generic leadership platitudes
+- Avoid: buzzwords without substance, generic statements, fabricated metrics
 
 ---
 
-## 7. Workflow for Updates
+## 7. Application Tracking
 
-### Beads Commands (Task Tracking)
-```bash
-bd ready    # Show unblocked tasks
-bd list     # All tasks
-bd create "Task title"
-bd close <id>
-```
-
-### Adding New Achievements
-1. Add to `analysis/achievements/achievements.md`
-2. Include: metric, source, applicable roles
-3. Update summary statistics at bottom
-
-### Regenerating CV Versions
-1. Read updated achievements.md
-2. Read skills-inventory/skills.md
-3. Tailor content for specific role
-4. Verify all metrics against source files
-5. Check 2-page length when formatted
-
-### Key Source Files to Read
-1. `analysis/achievements/achievements.md` - Primary achievement database
-2. `sources/current-cv/[NAME].pdf` - Original CV
-3. `config.yaml` - URLs and paths
+| Company | Role | Date | Status | Folder |
+|---------|------|------|--------|--------|
+| | | | | |
 
 ---
 
@@ -210,67 +136,20 @@ bd close <id>
 ### Starting a Session
 - [ ] Read CLAUDE.md for project rules
 - [ ] Read this AGENTS.md for context
-- [ ] Check `bd ready` for pending tasks
+- [ ] Check `outputs/applications/` for in-progress applications
 - [ ] Review any new files in sources/
+- [ ] Greet the user with relevant context
 
 ### Making Changes
 - [ ] Verify all metrics against achievements.md
 - [ ] Don't fabricate - only use documented facts
 - [ ] Update achievements.md with any new information
-- [ ] Mark beads tasks as complete when done
+- [ ] **CHECKIN with the user** before moving to next phase
 
 ### Key Reminders
 - [Verified fact #1 that agents should use]
 - [Verified fact #2 that agents should use]
-- [Verified fact #3 that agents should use]
 
 ---
 
-## 9. LinkedIn Status
-
-**Status:** [Current phase]
-
-**Completed:**
-- [What's done]
-
-**Still to do:**
-- [What's pending]
-
-**See:** `analysis/linkedin-completed.md` for full summary.
-
----
-
-## 10. CV PDF Generation Status
-
-**Status:** [Current state]
-
-### Current Page Counts
-| CV Version | Pages | Target | Status |
-|------------|-------|--------|--------|
-| [Role 1] | X | 2 | [Status] |
-| [Role 2] | X | 2 | [Status] |
-| [Role 3] | X | 2 | [Status] |
-
-### PDF Generation Tool
-Script: `scripts/make-cv.js`
-```bash
-# Generate HTML only
-node scripts/make-cv.js outputs/cv-versions/[role].md
-
-# Generate HTML + PDF with page count
-node scripts/make-cv.js outputs/cv-versions/[role].md --pdf
-```
-
-Dependencies: `playwright`, `pdf-lib` (run `npm install` first)
-
-### Bold Highlighting Guidelines
-Add bold to draw attention to:
-- Company names that carry weight
-- Key metrics (percentages, dollar amounts, user counts)
-- Awards and recognition
-- Scale numbers (team size, users, etc.)
-- Time periods that show longevity
-
----
-
-*Copy this template to AGENTS.md and fill in your details as you work through the project.*
+*Claude will fill this in for you during setup. You don't need to edit this manually.*

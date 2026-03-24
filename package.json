@@ -3,9 +3,17 @@
   "version": "1.0.0",
   "description": "AI-assisted career toolkit for CV optimization, LinkedIn improvements, and job applications",
   "scripts": {
-    "cv": "node scripts/make-cv.js"
+    "cv": "node scripts/make-cv.js",
+    "read-docx": "node scripts/read-docx.js"
   },
-  "keywords": ["cv", "resume", "career", "claude", "ai", "job-search"],
+  "keywords": [
+    "cv",
+    "resume",
+    "career",
+    "claude",
+    "ai",
+    "job-search"
+  ],
   "author": "",
   "license": "MIT",
   "repository": {
@@ -13,6 +21,7 @@
     "url": "https://github.com/a-c-m/claude-get-me-a-job.git"
   },
   "dependencies": {
+    "mammoth": "^1.12.0",
     "pdf-lib": "^1.17.1",
     "playwright": "^1.57.0"
   }

@@ -1,26 +1,49 @@
 # CV Project Configuration
 # Copy this file to config.yaml and fill in your details
+# (Or just let Claude ask you these questions conversationally!)
 # config.yaml is gitignored to keep your personal info private
 
-# Blog URL for the agent to crawl
+# Your name
+name: ""
+
+# Blog or personal website URL (leave blank if you don't have one)
 blog_url: ""
 
-# GitHub username for contribution analysis
+# GitHub username (leave blank if you don't have one)
 github_username: ""
 
-# LinkedIn profile URL (public profile)
+# LinkedIn profile URL
 linkedin_url: ""
 
-# Target roles (define 2-3 positions you're aiming for)
+# Target roles - what jobs are you looking for?
+# Here are some examples across different fields:
+#
+# Tech:        "Engineering Manager", "Full Stack Developer",
+#              "CTO", "DevOps Engineer", "Data Analyst"
+#
+# Non-tech:    "Project Coordinator", "Client Services Lead",
+#              "Operations Manager", "Marketing Manager"
+#
+# Add 2-4 roles you're targeting:
 target_roles:
   - title: ""
-    company_type: ""  # e.g., "startup", "enterprise", "agency"
     keywords: []
   - title: ""
-    company_type: ""
     keywords: []
 
-# Git repositories to analyze (paths or URLs)
+# Articles, press coverage, awards, or any URLs you'd like analyzed
+# These help build a richer picture of your achievements
+articles:
+  - url: ""
+    description: ""  # e.g., "Award nomination 2024", "Interview in TechCrunch"
+
+# Folders to scan for relevant documents (PDFs, Word docs, text files)
+# Point these to folders on your computer that contain work materials
+scan_folders:
+  - path: ""
+    description: ""  # e.g., "Performance reviews folder", "Project documents"
+
+# Git repositories to analyze (optional - only if you have coding experience)
 repositories:
   - path: ""
     description: ""
