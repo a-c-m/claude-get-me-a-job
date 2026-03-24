@@ -44,22 +44,45 @@ When you first open Claude Code, you'll need to sign in with your Anthropic acco
 
 Node.js is needed to convert your CVs from text into polished PDFs. You only need to install it once.
 
-### Mac
+### Mac / Linux
 
-**Option A — Download from website (easiest):**
+**Option A — Using nvm (recommended, no admin required):**
+
+nvm (Node Version Manager) lets you install Node.js without needing admin permissions. Open Terminal and run:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+
+Then **close and reopen your terminal**, and run:
+
+```bash
+nvm install --lts
+```
+
+That's it. You can verify with `node --version`.
+
+**Option B — Download from website:**
 1. Go to [nodejs.org](https://nodejs.org)
 2. Click the big green button that says **"LTS"** (Long Term Support)
 3. Open the downloaded file
-4. Follow the installer — click "Continue" through each step
-5. When it's done, you're all set
-
-**Option B — Using Homebrew (if you already have it):**
-```bash
-brew install node
-```
+4. Follow the installer — click "Continue" through each step (requires admin password)
 
 ### Windows
 
+**Option A — Using nvm-windows (recommended, simpler to manage):**
+
+1. Go to [github.com/coreybutler/nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases)
+2. Download **nvm-setup.exe** from the latest release
+3. Run the installer
+4. Open a **new** Command Prompt or PowerShell and run:
+
+```bash
+nvm install lts
+nvm use lts
+```
+
+**Option B — Download from website:**
 1. Go to [nodejs.org](https://nodejs.org)
 2. Click the big green button that says **"LTS"** (Long Term Support)
 3. Run the downloaded installer

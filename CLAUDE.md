@@ -21,10 +21,11 @@ A career development toolkit that helps people improve their CV, LinkedIn profil
 1. Welcome the user and explain what this project does. Set time expectations: "This first session takes about 30-45 minutes and will get you a full set of tailored CVs. I'll guide you through it step by step."
 2. **Check prerequisites** — before anything else, verify that Node.js and Git are installed:
    - Run `node --version` and `git --version`
-   - If **Node.js is missing**: Walk the user through installing it.
-     - Mac: "Go to nodejs.org, click the big green LTS button, open the downloaded file, and click Continue through the installer."
-     - Windows: "Go to nodejs.org, click the big green LTS button, run the installer, click Next through each step, and restart your computer."
-     - After they install it, verify with `node --version` again.
+   - If **Node.js is missing**: Walk the user through installing it. Prefer **nvm** (Node Version Manager) as it doesn't require admin/sudo access:
+     - Mac/Linux: "Run this in your terminal: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash` then close and reopen your terminal, then run `nvm install --lts`"
+     - Windows: "Download nvm-windows from https://github.com/coreybutler/nvm-windows/releases (click nvm-setup.exe), run the installer, then open a new terminal and run `nvm install lts` then `nvm use lts`"
+     - **Fallback** (if nvm is confusing): "Go to nodejs.org, click the big green LTS button, and run the installer."
+     - After they install it, verify with `node --version`.
    - If **Git is missing**:
      - Mac: "Type `git --version` in the terminal — you'll probably get a popup asking to install developer tools. Click Install and wait a few minutes."
      - Windows: "Go to git-scm.com, click Download for Windows, run the installer, and click Next through each step."
