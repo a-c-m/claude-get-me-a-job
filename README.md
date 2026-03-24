@@ -57,10 +57,13 @@ Copy and paste this into the Claude Code text input:
 ```
 I'd like to set up the "Claude Get Me A Job" career toolkit.
 
-Please clone https://github.com/a-c-m/claude-get-me-a-job.git into my
-current directory (or pull it if it already exists), run npm install,
-then read the CLAUDE.md file and walk me through the setup process
-step by step.
+First, check if I have git and node installed. If I don't, please
+help me install them — use nvm for node if possible so I don't need
+admin access.
+
+Once those are ready, clone https://github.com/a-c-m/claude-get-me-a-job.git
+into my current directory, run npm install, then read the CLAUDE.md file
+and walk me through the setup process step by step.
 
 I'll need help with:
 - Configuring my details (name, LinkedIn, target roles, etc.)

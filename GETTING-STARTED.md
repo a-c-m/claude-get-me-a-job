@@ -1,181 +1,63 @@
 # Getting Started — Complete Setup Guide
 
-This guide walks you through everything you need to install before using the toolkit. No technical experience required — just follow each step.
+This guide gets you from zero to a working career toolkit. The key idea: **get Claude Code running, then let Claude handle everything else.**
+
+You install one thing. Claude installs the rest.
 
 ## What You'll Need
 
-There are three things to install before you can start. The whole process takes about **10-15 minutes**.
-
-| Software | What It Does | Time to Install |
-|----------|-------------|-----------------|
-| **Claude Code** | The AI assistant that does the work | 2 min |
-| **Node.js** | Runs the CV-to-PDF converter | 3 min |
-| **Git** | Downloads the toolkit code | 3 min |
+- A computer (Mac or Windows)
+- A **Claude Pro or Team plan** ($20/month) — the free tier doesn't have enough capacity. See [claude.ai/pricing](https://claude.ai/pricing)
+- Your current CV (PDF or Word document) — have this ready on your computer
 
 ---
 
-## Step 1: Install Claude Code
-
-Claude Code is the AI assistant that powers this toolkit. You'll chat with it and it will guide you through everything.
+## Step 1: Install Claude Code (the only thing you install yourself)
 
 ### Mac
-
 1. Go to [claude.ai/code](https://claude.ai/code)
 2. Download the Mac app
 3. Open the downloaded file and drag it to your Applications folder
 4. Open Claude Code from your Applications
+5. Sign in with your Anthropic account (create one at [claude.ai](https://claude.ai) if needed)
 
 ### Windows
-
 1. Go to [claude.ai/code](https://claude.ai/code)
 2. Download the Windows installer
 3. Run the installer and follow the prompts
 4. Open Claude Code from your Start menu
-
-### First Time Setup
-
-When you first open Claude Code, you'll need to sign in with your Anthropic account. If you don't have one, you can create one at [claude.ai](https://claude.ai).
-
-**Important:** Claude Code requires a **Claude Pro or Team plan** ($20/month). The free tier doesn't have enough capacity for this toolkit — it needs to read your CV, crawl websites, generate multiple documents, and have extended conversations. Check [claude.ai/pricing](https://claude.ai/pricing) for current options.
+5. Sign in with your Anthropic account (create one at [claude.ai](https://claude.ai) if needed)
 
 ---
 
-## Step 2: Install Node.js
+## Step 2: Create a Folder
 
-Node.js is needed to convert your CVs from text into polished PDFs. You only need to install it once.
+Claude needs a place to work:
 
-### Mac / Linux
-
-**Option A — Using nvm (recommended, no admin required):**
-
-nvm (Node Version Manager) lets you install Node.js without needing admin permissions. Open Terminal and run:
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-```
-
-Then **close and reopen your terminal**, and run:
-
-```bash
-nvm install --lts
-```
-
-That's it. You can verify with `node --version`.
-
-**Option B — Download from website:**
-1. Go to [nodejs.org](https://nodejs.org)
-2. Click the big green button that says **"LTS"** (Long Term Support)
-3. Open the downloaded file
-4. Follow the installer — click "Continue" through each step (requires admin password)
-
-### Windows
-
-**Option A — Using nvm-windows (recommended, simpler to manage):**
-
-1. Go to [github.com/coreybutler/nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases)
-2. Download **nvm-setup.exe** from the latest release
-3. Run the installer
-4. Open a **new** Command Prompt or PowerShell and run:
-
-```bash
-nvm install lts
-nvm use lts
-```
-
-**Option B — Download from website:**
-1. Go to [nodejs.org](https://nodejs.org)
-2. Click the big green button that says **"LTS"** (Long Term Support)
-3. Run the downloaded installer
-4. Click "Next" through each step (the defaults are fine)
-5. Restart your computer when it's done
-
-### Check It Worked
-
-After installing, open a terminal (Mac: Terminal app, Windows: Command Prompt) and type:
-```bash
-node --version
-```
-You should see something like `v20.x.x` or `v22.x.x`. The exact number doesn't matter — if you see a version number, it's working.
-
----
-
-## Step 3: Install Git
-
-Git is a tool for downloading code. The toolkit uses it to get the project files onto your computer.
-
-### Mac
-
-Git may already be installed. To check, open Terminal and type:
-```bash
-git --version
-```
-
-If you see a version number, you're done. If not:
-
-1. You'll be prompted to install the Xcode Command Line Tools — click **"Install"**
-2. Wait for it to finish (this can take a few minutes)
-3. That's it — git is now installed
-
-### Windows
-
-1. Go to [git-scm.com](https://git-scm.com)
-2. Click **"Download for Windows"**
-3. Run the installer
-4. **Important:** On the "Adjusting your PATH" step, select **"Git from the command line and also from 3rd-party software"** (this should be the default)
-5. Click "Next" for all other steps (the defaults are fine)
-6. Click "Install"
-
-### Check It Worked
-
-Open a terminal and type:
-```bash
-git --version
-```
-You should see something like `git version 2.x.x`.
-
----
-
-## Step 4: Create Your Project Folder
-
-You need a folder on your computer where the toolkit will live.
-
-### Mac
-
-1. Open **Finder**
-2. Go to your **Documents** folder (or Desktop — wherever you like)
-3. Right-click and choose **"New Folder"**
-4. Name it `claude-get-me-a-job`
-
-### Windows
-
-1. Open **File Explorer**
-2. Go to your **Documents** folder (or Desktop)
-3. Right-click and choose **"New" > "Folder"**
-4. Name it `claude-get-me-a-job`
-
----
-
-## Step 5: Open the Folder in Claude Code
-
-1. Open the **Claude Code** app
-2. Open your new folder:
+1. Create a new folder on your computer — call it `claude-get-me-a-job`
+   - **Mac:** Open Finder, go to Documents, right-click > New Folder
+   - **Windows:** Open File Explorer, go to Documents, right-click > New > Folder
+2. In Claude Code, open that folder:
    - **Drag** the folder onto the Claude Code window, **or**
    - Use **File > Open Folder** and navigate to it
 3. You should see the folder name in the app header
 
 ---
 
-## Step 6: Paste the Setup Prompt
+## Step 3: Paste This Prompt
 
-Copy and paste this into the Claude Code text input and press Enter:
+Copy and paste this into Claude Code and press Enter:
 
 ```
 I'd like to set up the "Claude Get Me A Job" career toolkit.
 
-Please clone https://github.com/a-c-m/claude-get-me-a-job.git into my
-current directory (or pull it if it already exists), run npm install,
-then read the CLAUDE.md file and walk me through the setup process
-step by step.
+First, check if I have git and node installed. If I don't, please
+help me install them — use nvm for node if possible so I don't need
+admin access.
+
+Once those are ready, clone https://github.com/a-c-m/claude-get-me-a-job.git
+into my current directory, run npm install, then read the CLAUDE.md file
+and walk me through the setup process step by step.
 
 I'll need help with:
 - Configuring my details (name, LinkedIn, target roles, etc.)
@@ -186,67 +68,76 @@ I'll need help with:
 Please guide me conversationally — I don't want to edit config files manually.
 ```
 
-Claude will take it from here. It will:
-- Download the toolkit code
-- Install the necessary software
-- Ask you questions about yourself
-- Walk you through adding your CV
-- Start building your career materials
+---
+
+## Step 4: Follow Along
+
+That's it. From here, **Claude does everything**:
+
+1. **Checks your system** — if Git or Node.js aren't installed, Claude walks you through installing them step by step
+2. **Downloads the toolkit** — clones the code and installs dependencies
+3. **Asks you questions** — your name, LinkedIn, what roles you're targeting
+4. **Asks for your CV** — you just drop the file into the folder it tells you
+5. **Gathers data** — crawls your LinkedIn, blog, and any URLs you share
+6. **Shows you what it found** — and asks you to confirm before continuing
+7. **Interviews you** — asks about your achievements to fill gaps
+8. **Generates your CVs** — tailored versions for each role you're targeting
+
+### Tips
+
+- **Claude may ask permission** to run commands — this is normal. Click "Allow". These are safe operations like installing software and generating PDFs.
+- **If Claude gets stuck or goes in circles** — just close the app and reopen it. Your data is saved in files, not the conversation. Claude will pick up where it left off.
+- **Have your CV ready** as a PDF or Word document (.docx). If it's in old Word format (.doc), open it in Word and save as .docx or export as PDF first.
 
 ---
 
-## Step 7: Have Your CV Ready
+## What Happens in Your First Session
 
-Before you start, find your current CV on your computer. Supported formats:
-- **PDF** — most common, works directly
-- **Word document (.docx)** — Claude will convert it automatically
-- **Text or Markdown file** — works directly
+Your first session takes about **30-45 minutes**:
 
-If your CV is in an old Word format (.doc), open it in Word and re-save as .docx or export as PDF first.
+| Phase | What Happens | Your Time |
+|-------|-------------|-----------|
+| Setup | Claude installs tools, asks you a few questions | 5-10 min |
+| Discovery | Claude gathers data from your online presence | 2 min (you wait) |
+| Interview | Claude asks about your achievements | 5-15 min |
+| LinkedIn | Review optimization recommendations | 2 min |
+| CV Generation | Review role-specific CVs | 5 min |
 
-**Don't have a CV at all?** That's OK — Claude can still work from your LinkedIn and other sources, but having a CV makes the output much better.
+After that, applying to a specific job takes about **10 minutes** — paste the job URL and Claude produces a tailored CV, cover letters, and interview prep.
+
+---
+
+## Coming Back Later
+
+When you return to the project, just open Claude Code in the same folder. Claude will:
+- Remember your profile and achievements
+- Check on any active job applications
+- Ask how things are going
+- Suggest what to work on next
+
+You can say things like:
+- "I want to apply to [Company] — here's the job description"
+- "Help me prepare for my interview with [Company]"
+- "Update my CV with [new achievement]"
+- "Interview me to find more achievements"
 
 ---
 
 ## Troubleshooting
 
-### "command not found: node"
-Node.js isn't installed or isn't in your system path. Try restarting your terminal, or reinstall from [nodejs.org](https://nodejs.org).
+### Claude can't install Git or Node
+If Claude has trouble installing these automatically, you can install them manually:
+- **Node.js:** Go to [nodejs.org](https://nodejs.org), click the green LTS button, run the installer
+- **Git (Mac):** Open Terminal and type `git --version` — you'll get a popup to install developer tools. Click Install.
+- **Git (Windows):** Go to [git-scm.com](https://git-scm.com), download and run the installer
 
-### "command not found: git"
-Git isn't installed. Follow the install steps above for your operating system.
-
-### Claude asks for permission to run commands
-This is normal and expected. The toolkit needs to run commands to install software and generate PDFs. Click "Allow" when prompted. The pre-configured permissions handle most operations automatically.
+Then tell Claude "I've installed them, please continue."
 
 ### "npm install" fails
-Make sure Node.js is installed (check with `node --version`). If it is, try closing and reopening the Claude Code app, then ask Claude to run `npm install` again.
+Close and reopen Claude Code, then ask Claude to try again. If it keeps failing, check that Node.js is installed (`node --version` in a terminal).
 
-### The PDF doesn't generate
-The first time you generate a PDF, the system downloads a browser engine (Playwright). This can take a minute. If it fails, ask Claude to run `npx playwright install chromium` and try again.
+### PDF doesn't generate
+The first PDF takes longer because it downloads a browser engine. If it fails, ask Claude to run `npx playwright install chromium` and try again.
 
-### Claude seems stuck or is going in circles
-This can happen occasionally. It's completely safe to close the Claude Code app and reopen it. Your data is saved in files on your computer, not in the conversation. When you start a new session in the same folder, Claude will read your config and achievements and pick up where it left off. You won't lose any work.
-
-### I messed something up
-Don't worry — your personal data (CV, achievements, etc.) is separate from the toolkit code. You can always start fresh by deleting the folder and running the setup prompt again. Your source files in `sources/` will need to be re-added.
-
----
-
-## What's Next?
-
-Once setup is complete, Claude will guide you through:
-1. **Discovery** — analyzing your materials (~10 min)
-2. **Interview** — asking you about your achievements (~5-15 min)
-3. **LinkedIn** — optimization recommendations (~2 min)
-4. **CV Generation** — role-specific versions (~5 min)
-
-Total first session: **30-45 minutes** for a complete set of tailored CVs.
-
-After that, you can come back anytime to:
-- Apply to specific jobs (paste a job URL)
-- Refine your CVs
-- Get interview prep
-- Update your achievements
-
-Just open Claude Code in the same folder and start chatting.
+### I want to start over
+Delete the folder and create a new one. Run the setup prompt again. Your source files (CV, etc.) will need to be re-added.
