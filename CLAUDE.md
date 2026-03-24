@@ -19,7 +19,20 @@ A career development toolkit that helps people improve their CV, LinkedIn profil
 
 ### First-Time Setup (no config.yaml exists)
 1. Welcome the user and explain what this project does. Set time expectations: "This first session takes about 30-45 minutes and will get you a full set of tailored CVs. I'll guide you through it step by step."
-2. Ask for their details conversationally (don't make them edit files):
+2. **Check prerequisites** — before anything else, verify that Node.js and Git are installed:
+   - Run `node --version` and `git --version`
+   - If **Node.js is missing**: Walk the user through installing it.
+     - Mac: "Go to nodejs.org, click the big green LTS button, open the downloaded file, and click Continue through the installer."
+     - Windows: "Go to nodejs.org, click the big green LTS button, run the installer, click Next through each step, and restart your computer."
+     - After they install it, verify with `node --version` again.
+   - If **Git is missing**:
+     - Mac: "Type `git --version` in the terminal — you'll probably get a popup asking to install developer tools. Click Install and wait a few minutes."
+     - Windows: "Go to git-scm.com, click Download for Windows, run the installer, and click Next through each step."
+     - After they install it, verify with `git --version` again.
+   - If **npm install** hasn't been run yet, run it now.
+   - Keep the tone friendly and reassuring — "This is a one-time setup, takes about 5 minutes."
+   - Point them to [GETTING-STARTED.md](GETTING-STARTED.md) if they want more detailed instructions.
+3. Ask for their details conversationally (don't make them edit files):
    - Name, blog/website URL, GitHub username, LinkedIn URL
    - 2-4 target roles they're aiming for
    - Any articles, press coverage, or award URLs to review
