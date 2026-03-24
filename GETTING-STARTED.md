@@ -36,7 +36,7 @@ Claude Code is the AI assistant that powers this toolkit. You'll chat with it an
 
 When you first open Claude Code, you'll need to sign in with your Anthropic account. If you don't have one, you can create one at [claude.ai](https://claude.ai).
 
-**Note:** Claude Code requires a paid plan (Pro or Team). Check [claude.ai/pricing](https://claude.ai/pricing) for current options.
+**Important:** Claude Code requires a **Claude Pro or Team plan** ($20/month). The free tier doesn't have enough capacity for this toolkit — it needs to read your CV, crawl websites, generate multiple documents, and have extended conversations. Check [claude.ai/pricing](https://claude.ai/pricing) for current options.
 
 ---
 

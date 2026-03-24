@@ -30,6 +30,8 @@ This project uses [Claude Code](https://claude.ai/code) as an AI assistant that 
 
 **You don't need to be technical.** Claude will guide you through setup conversationally.
 
+> **Requires Claude Pro or Team plan** — the free tier doesn't have enough capacity for this toolkit. See [claude.ai/pricing](https://claude.ai/pricing) for details.
+
 > **First time using Claude Code?** See the [Getting Started guide](GETTING-STARTED.md) for step-by-step instructions on installing everything you need (Claude Code, Node.js, Git). It takes about 10-15 minutes.
 
 ## Quick Start — One Prompt To Get Going
