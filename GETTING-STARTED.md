@@ -202,6 +202,9 @@ Make sure Node.js is installed (check with `node --version`). If it is, try clos
 ### The PDF doesn't generate
 The first time you generate a PDF, the system downloads a browser engine (Playwright). This can take a minute. If it fails, ask Claude to run `npx playwright install chromium` and try again.
 
+### Claude seems stuck or is going in circles
+This can happen occasionally. It's completely safe to close the Claude Code app and reopen it. Your data is saved in files on your computer, not in the conversation. When you start a new session in the same folder, Claude will read your config and achievements and pick up where it left off. You won't lose any work.
+
 ### I messed something up
 Don't worry — your personal data (CV, achievements, etc.) is separate from the toolkit code. You can always start fresh by deleting the folder and running the setup prompt again. Your source files in `sources/` will need to be re-added.
 
