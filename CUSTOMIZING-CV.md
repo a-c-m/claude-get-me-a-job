@@ -1,217 +1,284 @@
 # Customizing Your CV Look & Feel
 
-This guide explains how to change the visual appearance of your generated CVs. The system converts your CV from Markdown to HTML to PDF, and you can customize each stage.
+This guide explains how to change the visual appearance of your generated CVs. The system uses **RenderCV** to produce publication-quality PDFs from YAML source files via Typst typesetting.
 
 ## How CV Generation Works
+
+```
+Your CV (YAML) → rendercv render → PDF, HTML, PNG, Markdown, Typst
+```
+
+All content and styling live in a single `.yaml` file. The `design:` section controls the visual appearance — no CSS or code editing required.
+
+## Quick Customizations
+
+### Themes
+
+Change the entire look by switching the theme in your YAML file:
+
+```yaml
+design:
+  theme: engineeringresumes   # or: classic, harvard, engineeringclassic, sb2nov, moderncv
+```
+
+| Theme | Style |
+|-------|-------|
+| `classic` | Clean, professional, blue accents |
+| `harvard` | Traditional academic, serif font, black & white |
+| `engineeringresumes` | Compact, technical, full-width lines |
+| `engineeringclassic` | Modern engineering, Raleway font |
+| `sb2nov` | LaTeX-style, Computer Modern font |
+| `moderncv` | European-style, photo support, left-aligned |
+
+### Fonts
+
+Override the font family for any element:
+
+```yaml
+design:
+  typography:
+    font_family:
+      body: Source Sans 3        # Main text
+      name: Source Sans 3        # Your name
+      section_titles: Source Sans 3
+```
+
+**Popular professional CV font options:**
+- `Source Sans 3` — Clean, modern (default)
+- `XCharter` — Classic, traditional serif
+- `Raleway` — Friendly, contemporary
+- `New Computer Modern` — LaTeX-style academic
+- `Fontin` — European, elegant
+
+### Font Size
+
+```yaml
+design:
+  typography:
+    font_size:
+      body: 10pt       # Main text (default: 10pt, try 9pt for more compact)
+      name: 30pt        # Your name
+      section_titles: 1.4em
+```
+
+### Margins
+
+```yaml
+design:
+  page:
+    size: us-letter     # or: a4
+    top_margin: 0.7in   # Try 0.5in for tighter
+    bottom_margin: 0.7in
+    left_margin: 0.7in
+    right_margin: 0.7in
+```
+
+### Colors
+
+```yaml
+design:
+  colors:
+    body: rgb(0, 0, 0)           # Main text
+    name: rgb(0, 79, 144)        # Name color
+    section_titles: rgb(0, 79, 144)
+    links: rgb(0, 79, 144)
+    connections: rgb(0, 79, 144)  # Contact info
+```
+
+For a fully black and white CV:
+```yaml
+design:
+  colors:
+    name: rgb(0, 0, 0)
+    section_titles: rgb(0, 0, 0)
+    links: rgb(0, 0, 0)
+    connections: rgb(0, 0, 0)
+```
+
+### Section Title Style
+
+```yaml
+design:
+  section_titles:
+    type: with_partial_line        # or: with_full_line, centered_with_centered_partial_line, moderncv
+    line_thickness: 0.5pt
+```
+
+### Bold and Small Caps
+
+```yaml
+design:
+  typography:
+    bold:
+      name: true
+      section_titles: true
+    small_caps:
+      name: false
+      section_titles: false
+```
+
+## Automatic Bold Keywords
+
+Instead of manually bolding text, you can auto-bold specific words across the entire CV:
+
+```yaml
+settings:
+  bold_keywords:
+    - Go
+    - TypeScript
+    - Kubernetes
+    - AWS
+```
+
+You can still use `**manual bold**` in any text field for one-off emphasis.
+
+## Content Tips
+
+### Text Formatting in YAML
+
+All text fields support inline Markdown:
+- `**bold**` and `*italic*`
+- `[link text](url)`
+- No block-level Markdown (no headers, lists, or code blocks in text fields)
+
+### YAML Quoting Rule
+
+**Always quote strings containing colons (`:`)**  — this is the most common YAML error:
+
+```yaml
+# WRONG:
+- "Relevant coursework: Distributed Systems"   # Actually this is fine (already quoted)
+
+# WRONG:
+highlights:
+  - Relevant coursework: Distributed Systems    # Breaks YAML!
+
+# RIGHT:
+highlights:
+  - "Relevant coursework: Distributed Systems"
+```
+
+### Nested Bullets (Sub-bullets)
+
+```yaml
+highlights:
+  - Main bullet point
+    - Sub-bullet 1
+    - Sub-bullet 2
+```
+
+## Advanced Customization
+
+### Separate Design Files
+
+Reuse the same design across multiple CV versions:
+
+```bash
+rendercv render cv-backend.yaml --design shared-design.yaml
+```
+
+Where `shared-design.yaml` contains only the `design:` section.
+
+### Entry Layout Templates
+
+Customize how entries are rendered:
+
+```yaml
+design:
+  templates:
+    experience_entry:
+      main_column: |-
+        **COMPANY**, POSITION
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column: |-
+        LOCATION
+        DATE
+```
+
+### Custom Typst Templates
+
+For full design control beyond what YAML offers:
+
+```bash
+rendercv create-theme "my-theme"
+```
+
+This scaffolds editable Typst templates you can modify directly.
+
+## Testing Changes
+
+```bash
+# Render and check the PDF
+rendercv render outputs/cv-versions/my-cv.yaml
+
+# Watch mode — auto-renders on every save
+rendercv render outputs/cv-versions/my-cv.yaml --watch
+
+# Quick PNG preview (faster, skip PDF/HTML/MD)
+rendercv render outputs/cv-versions/my-cv.yaml --dont-generate-pdf --dont-generate-html --dont-generate-markdown
+```
+
+Page count is visible from the PNG output — each page generates a separate `_1.png`, `_2.png`, etc.
+
+## Common Issues
+
+**CV is more than 2 pages:**
+- Reduce body font size (try `9pt`)
+- Tighten margins (try `0.5in`)
+- Reduce `design.typography.line_spacing` (try `0.5em`)
+- Trim highlights — fewer, stronger bullets
+- Ask Claude to help trim content
+
+**YAML parsing error:**
+- Check for unquoted strings containing colons (`:`)
+- Check for invalid phone number format (must be E.164: `+15551234567`)
+
+**Fonts look different than expected:**
+- RenderCV bundles fonts via Typst — not all system fonts are available
+- Stick to the theme defaults or fonts listed in theme documentation
+
+## Getting Help
+
+Ask Claude to customize your CV styling. Use the `/rendercv` skill for full schema reference. Examples:
+- "Switch my CV to the harvard theme"
+- "Make the headings black instead of blue"
+- "Use a more compact layout to fit on 2 pages"
+- "Show me what the moderncv theme looks like"
+
+---
+
+## Legacy Fallback: make-cv.js
+
+If RenderCV is not installed or you prefer working with Markdown source files, the original pipeline is still available:
 
 ```
 Your CV (Markdown) → make-cv.js → Styled HTML → PDF (via Playwright)
 ```
 
-The script `scripts/make-cv.js` handles the conversion. All styling is controlled by CSS inside that file.
-
-## Quick Customizations
-
-### Fonts
-
-The default uses **Montserrat** for headings and **Open Sans** for body text, loaded from Google Fonts. To change fonts, edit the `<link>` tags and `font-family` in `scripts/make-cv.js`:
-
-```css
-/* Find this section in make-cv.js */
-body {
-    font-family: 'Montserrat', 'Open Sans', Arial, sans-serif;
-}
-```
-
-**Popular professional CV font combinations:**
-- `'Garamond', 'Georgia', serif` — Classic, traditional
-- `'Calibri', 'Helvetica Neue', sans-serif` — Clean, modern (Microsoft standard)
-- `'Lato', 'Open Sans', sans-serif` — Friendly, contemporary
-- `'Roboto', 'Arial', sans-serif` — Tech-forward, Google-style
-
-If using Google Fonts, update the `<link>` tag to load your chosen font.
-
-### Font Size
-
-The default body text is `9pt`, which fits a lot on 2 pages. Adjust in the CSS:
-
-```css
-body {
-    font-size: 9pt;    /* Try 10pt for larger text, 8.5pt for more compact */
-    line-height: 1.4;  /* Increase to 1.5 or 1.6 for more breathing room */
-}
-```
-
-### Margins
-
-PDF margins are set in the Playwright PDF generation call:
-
-```js
-await page.pdf({
-    margin: { top: '15mm', bottom: '15mm', left: '15mm', right: '15mm' },
-});
-```
-
-- **Standard:** 15mm all around (default)
-- **Tight:** 10mm — fits more content
-- **Generous:** 20mm — more white space, easier to read
-
-### Colors
-
-The default is black text on white with minimal color. Key color values:
-
-```css
-body { color: #333; }              /* Main text — dark gray */
-.md-symbol { color: #999; }        /* Markdown symbols — light gray */
-a { color: #0066cc; }              /* Links — blue */
-blockquote { border-left: 4px solid #999; background: #f5f5f5; }
-```
-
-To make it fully black and white for print:
-```css
-body { color: #000; }
-a { color: #000; }
-```
-
-### Heading Sizes
-
-```css
-h1 { font-size: 18pt; }   /* Your name */
-h2 { font-size: 12pt; }   /* Section titles (Experience, Education, etc.) */
-h3 { font-size: 10pt; }   /* Company/role names */
-h4 { font-size: 9pt; }    /* Sub-sections */
-```
-
-## Markdown Formatting Features
-
-### Page Breaks
-
-Force a page break at a specific point in your CV:
-
-```markdown
-<!-- pagebreak -->
-```
-
-Place this before a major section (e.g., before "Education" or a new role) to control where pages split.
-
-### Float Right (Contact Info)
-
-Place contact details or dates on the right side of a heading:
-
-```markdown
-# Alex McFadyen
-<!-- float-right-header -->
-London, UK | alex@example.com
-linkedin.com/in/alexmcfadyen
-<!-- /float-right-header -->
-```
-
-Or for section-level floats:
-
-```markdown
-### Senior Engineer
-<!-- float-right -->
-Jan 2020 — Present
-<!-- /float-right -->
-```
-
-### Bold for Emphasis
-
-Use bold strategically to draw the reader's eye:
-
-```markdown
-- Led migration to **microservices architecture**, reducing deployment time by **75%**
-- Managed team of **12 engineers** across **3 time zones**
-```
-
-**What to bold:**
-- Key metrics and numbers
-- Company names that carry weight
-- Awards and recognition
-- Scale indicators (team size, users, revenue)
-
-**Don't over-bold** — if everything is bold, nothing stands out.
-
-### Blockquotes for Testimonials
-
-```markdown
-> "Alex transformed our engineering culture and delivery speed." — **Jane Smith, CEO**
-```
-
-### Horizontal Rules for Section Dividers
-
-```markdown
----
-```
-
-These render as styled dividers (the text `---` in light gray), good for separating bottom sections like Skills, Education, and Recognition.
-
-## Advanced Customization
-
-### Editing the HTML Template
-
-The full HTML template is in `scripts/make-cv.js` starting around line 105. You can:
-
-1. Add custom CSS classes
-2. Change the HTML structure
-3. Add a header/footer to every page
-4. Include a photo or logo
-
-### Adding a Header/Footer to PDF
-
-In the Playwright PDF options in `make-cv.js`, add:
-
-```js
-await page.pdf({
-    // ... existing options
-    headerTemplate: '<div style="font-size:8px; text-align:center; width:100%;">Your Name</div>',
-    footerTemplate: '<div style="font-size:8px; text-align:center; width:100%;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>',
-    displayHeaderFooter: true,
-});
-```
-
-### Two-Column Layout
-
-For a more modern look, you could restructure the CSS to use a sidebar. This requires more significant changes — ask Claude to help implement a two-column layout if you'd like this style.
-
-## Testing Changes
-
-After making CSS changes:
+### Usage
 
 ```bash
-# Generate HTML to preview in browser
+# Generate HTML from markdown CV
 node scripts/make-cv.js outputs/cv-versions/my-cv.md
 
-# Open the HTML in your browser to check the look
-open outputs/cv-versions/my-cv.html
-
-# When happy, generate PDF
+# Generate HTML + PDF with page count validation
 node scripts/make-cv.js outputs/cv-versions/my-cv.md --pdf
 ```
 
-The HTML preview in your browser is the fastest way to iterate on styling. The PDF will look very similar but may have slight differences in spacing.
+### Customization
 
-## Common Issues
+The `make-cv.js` script embeds all CSS styling. Edit the file directly to change:
+- **Fonts:** Montserrat (headings) + Open Sans (body) via Google Fonts
+- **Font size:** 9pt body text (change in CSS)
+- **Margins:** 15mm all around (change in Playwright PDF options)
+- **Colors:** `#333` body, `#0066cc` links (change in CSS)
 
-**CV is more than 2 pages:**
-- Reduce font size (try `8.5pt`)
-- Tighten line-height (try `1.3`)
-- Reduce margins (try `10mm`)
-- Use `<!-- pagebreak -->` to control where splits happen
-- Ask Claude to help trim content
+### Markdown Formatting Features
 
-**Fonts don't load in PDF:**
-- Google Fonts need internet access during PDF generation
-- For offline use, download the font files and reference them locally
-
-**Page breaks in wrong places:**
-- Add `<!-- pagebreak -->` before major sections
-- The CSS includes `page-break-after: avoid` on headings to prevent orphaned titles
-
-## Getting Help
-
-Ask Claude to help customize your CV styling. For example:
-- "Make my CV use a more traditional serif font"
-- "Add a sidebar with my contact info and skills"
-- "Make the headings blue"
-- "Reduce the spacing to fit everything on 2 pages"
+- `<!-- pagebreak -->` — force page break
+- `<!-- float-right-header -->...<!-- /float-right-header -->` — right-aligned contact info
+- `<!-- float-right -->...<!-- /float-right -->` — right-aligned dates/location
+- `**bold**` — selective emphasis on metrics and key facts
+- `> "Quote" — **Name, Title**` — blockquote testimonials
+- `---` — section dividers
