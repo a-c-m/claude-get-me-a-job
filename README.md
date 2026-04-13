@@ -2,17 +2,30 @@
 
 An AI-assisted career toolkit that helps you build better CVs, optimize your LinkedIn profile, and create tailored job applications. Works for any role — technical or non-technical.
 
+## The Bigger Picture
+
+I think about getting a job in 4 phases:
+
+| Phase                              | What                                                   |
+| ---------------------------------- | ------------------------------------------------------ |
+| **1. Finding the Job**       | Discovering roles that match your skills and ambitions |
+| **2. Getting an Interview**  | CV, LinkedIn, cover letters, application materials     |
+| **3. Passing the Interview** | Research, practice, feedback loops                     |
+| **4. Starting Strong**       | Negotiation, onboarding, making an impact early        |
+
+This toolkit focuses on Phase 2. But I have thoughts/tips on all four: see **[Getting a Job — The Full Toolkit](GETTING-A-JOB-TOOLS.md)**.
+
 ## Time Investment
 
 Your first session takes about **30-45 minutes** and gets you a full set of tailored CVs. Here's what to expect:
 
-| Phase | What Happens | Your Time | Waiting Time |
-|-------|-------------|-----------|-------------|
-| Setup | Answer a few questions, add your CV | 5 min | — |
-| Discovery | Claude gathers data from your sources | 2 min | 5 min |
-| Interview | Claude asks you about your achievements | 5-15 min | — |
-| LinkedIn | Review optimization recommendations | 2 min | 1 min |
-| CV Generation | Review role-specific CVs | 5 min | 2 min |
+| Phase         | What Happens                            | Your Time | Waiting Time |
+| ------------- | --------------------------------------- | --------- | ------------ |
+| Setup         | Answer a few questions, add your CV     | 5 min     | —           |
+| Discovery     | Claude gathers data from your sources   | 2 min     | 5 min        |
+| Interview     | Claude asks you about your achievements | 5-15 min  | —           |
+| LinkedIn      | Review optimization recommendations     | 2 min     | 1 min        |
+| CV Generation | Review role-specific CVs                | 5 min     | 2 min        |
 
 After that, applying to a specific job takes about **10 minutes** each — you paste the job description and Claude produces a tailored CV, cover letters, and interview prep.
 
@@ -83,6 +96,7 @@ That's it. Claude handles the rest — cloning the code, installing dependencies
 ### What Happens Next
 
 Claude will:
+
 1. **Ask you a few questions** — your name, LinkedIn URL, what roles you're targeting, etc.
 2. **Ask for your CV** — this is the most important input. You can provide:
    - A **PDF** (most common — just drop it in the folder Claude tells you)
@@ -124,23 +138,26 @@ mkdir -p sources/current-cv
 
 This works for any role. Some examples:
 
-| Technical | Non-Technical |
-|-----------|--------------|
-| Engineering Manager | Project Coordinator |
+| Technical            | Non-Technical        |
+| -------------------- | -------------------- |
+| Engineering Manager  | Project Coordinator  |
 | Full Stack Developer | Client Services Lead |
-| CTO / VP Engineering | Operations Manager |
-| Data Analyst | Marketing Manager |
-| DevOps Engineer | Account Manager |
+| CTO / VP Engineering | Operations Manager   |
+| Data Analyst         | Marketing Manager    |
+| DevOps Engineer      | Account Manager      |
 
 ## Workflow Phases
 
 ### Phase 1: Discovery
+
 Claude analyzes your materials and builds a picture of your experience. It then **checks in** to show you what it found and asks you to correct anything.
 
 ### Phase 2: Discovery Interview
+
 Claude **interviews you conversationally** to surface achievements, metrics, and experiences that aren't captured in your CV or online presence. Most people undersell themselves — this fixes that.
 
 Claude will ask about:
+
 - Your proudest moments at each role
 - Team sizes, budgets, and scale
 - Before/after metrics for things you improved
@@ -150,13 +167,17 @@ Claude will ask about:
 It's designed to feel like a helpful chat, not an interrogation. You can trigger this anytime by saying "interview me" or "help me dig into my achievements."
 
 ### Phase 3: LinkedIn Optimization
+
 Specific recommendations for improving your profile visibility for your target roles.
 
 ### Phase 4: CV Generation
+
 Role-specific CV versions, each tailored to emphasize relevant experience. Claude shows you each one and asks for feedback before moving on.
 
 ### Phase 5: Job Applications
+
 When you find a job to apply for, give Claude the job description and it creates:
+
 - Tailored CV (Markdown, HTML, PDF)
 - Cover letters (short + long versions)
 - Company research
@@ -168,16 +189,16 @@ See [APPLICATIONS.md](APPLICATIONS.md) for the full workflow.
 
 The more you give Claude, the better the output:
 
-| Source | How to Add | Priority |
-|--------|-----------|----------|
-| **Your current CV** | Drop into `sources/current-cv/` (PDF, Word, or text) | Essential |
-| **LinkedIn URL** | Tell Claude during setup | High |
-| **Blog/website** | Tell Claude during setup | Medium |
-| **Articles & press** | Share URLs during setup | Medium |
-| **Documents & PDFs** | Point Claude to a folder to scan | Medium |
-| **GitHub** | Tell Claude your username | Optional |
-| **Code repositories** | Point Claude to repos on your machine (technical users only) | Optional |
-| **LinkedIn data export** | Settings > Data Privacy > Get a copy of your data | Nice to have |
+| Source                         | How to Add                                                   | Priority     |
+| ------------------------------ | ------------------------------------------------------------ | ------------ |
+| **Your current CV**      | Drop into `sources/current-cv/` (PDF, Word, or text)       | Essential    |
+| **LinkedIn URL**         | Tell Claude during setup                                     | High         |
+| **Blog/website**         | Tell Claude during setup                                     | Medium       |
+| **Articles & press**     | Share URLs during setup                                      | Medium       |
+| **Documents & PDFs**     | Point Claude to a folder to scan                             | Medium       |
+| **GitHub**               | Tell Claude your username                                    | Optional     |
+| **Code repositories**    | Point Claude to repos on your machine (technical users only) | Optional     |
+| **LinkedIn data export** | Settings > Data Privacy > Get a copy of your data            | Nice to have |
 
 ## Project Structure
 
@@ -225,6 +246,7 @@ Want to change fonts, colors, or layout? See [CUSTOMIZING-CV.md](CUSTOMIZING-CV.
 ## Privacy
 
 Your personal data stays private. The `.gitignore` excludes:
+
 - `config.yaml` (your URLs and settings)
 - `sources/` (your CV and documents)
 - `analysis/` (extracted achievements)
@@ -236,6 +258,7 @@ Only the templates and scripts are in the repository.
 ## Returning Sessions
 
 When you come back to this project, Claude remembers where you left off. It will:
+
 - Check your existing data and application progress
 - Ask how things are going
 - Suggest next steps based on what's already done
@@ -245,6 +268,7 @@ Just open Claude Code in this folder and start chatting.
 ## Contributing
 
 Contributions welcome:
+
 - Improvements to `make-cv.js` for better PDF output
 - Additional workflow documentation
 - Bug fixes and enhancements
