@@ -19,8 +19,8 @@ A career development toolkit that helps people improve their CV, LinkedIn profil
 
 ### First-Time Setup (no config.yaml exists)
 1. Welcome the user and explain what this project does. Set time expectations: "This first session takes about 30-45 minutes and will get you a full set of tailored CVs. I'll guide you through it step by step."
-2. **Check prerequisites** — before anything else, verify that Node.js and Git are installed:
-   - Run `node --version` and `git --version`
+2. **Check prerequisites** — before anything else, verify that Node.js, Git, and RenderCV are installed:
+   - Run `node --version`, `git --version`, and `rendercv --version`
    - If **Node.js is missing**: Walk the user through installing it. Prefer **nvm** (Node Version Manager) as it doesn't require admin/sudo access:
      - Mac/Linux: "Run this in your terminal: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash` then close and reopen your terminal, then run `nvm install --lts`"
      - Windows: "Download nvm-windows from https://github.com/coreybutler/nvm-windows/releases (click nvm-setup.exe), run the installer, then open a new terminal and run `nvm install lts` then `nvm use lts`"
@@ -30,6 +30,7 @@ A career development toolkit that helps people improve their CV, LinkedIn profil
      - Mac: "Type `git --version` in the terminal — you'll probably get a popup asking to install developer tools. Click Install and wait a few minutes."
      - Windows: "Go to git-scm.com, click Download for Windows, run the installer, and click Next through each step."
      - After they install it, verify with `git --version` again.
+   - If **RenderCV is missing**: Install it using `uv tool install "rendercv[full]"`. If `uv` is not available, use `pipx install "rendercv[full]"`. If neither is available, install uv first by following the official installation instructions at https://docs.astral.sh/uv/getting-started/installation/ (prefer your OS package manager when available, and only run installer scripts from URLs you trust).
    - If **npm install** hasn't been run yet, run it now.
    - Keep the tone friendly and reassuring — "This is a one-time setup, takes about 5 minutes."
    - Point them to [GETTING-STARTED.md](GETTING-STARTED.md) if they want more detailed instructions.
@@ -131,7 +132,10 @@ When setting up, offer to scan folders the user specifies for relevant materials
 │   └── documents/         # Any other relevant docs
 │
 ├── outputs/               # Generated materials
-│   ├── cv-versions/       # Role-specific CVs
+│   ├── cv-versions/       # Role-specific CVs (.yaml source + rendercv_output/)
+│   │   ├── *.yaml         # RenderCV YAML source files (primary)
+│   │   ├── *.md           # Markdown versions (legacy fallback)
+│   │   └── rendercv_output/ # Generated PDF, PNG, HTML, MD, Typst
 │   ├── linkedin-updates/  # Recommended profile changes
 │   ├── cover-letters/     # Template cover letters
 │   └── applications/      # Per-job application packages
@@ -142,7 +146,7 @@ When setting up, offer to scan folders the user specifies for relevant materials
 │   └── gap-analysis/      # Skills gaps for target roles
 │
 └── scripts/               # Automation tools
-    └── make-cv.js         # Markdown to PDF converter
+    └── make-cv.js         # Markdown to PDF converter (legacy fallback)
 ```
 
 ## Workflow Phases
@@ -208,20 +212,29 @@ Review and recommend profile improvements.
 **CHECKIN:** Present recommendations, ask which to prioritize
 
 ### Phase 4: CV Generation
-Generate role-specific CV versions from the achievements database.
+Generate role-specific CV versions from the achievements database using **RenderCV**.
+
+**Use the `/rendercv` skill** when generating or customizing CVs. The skill provides full schema documentation, theme options, and CLI reference.
 
 **Steps:**
-1. For each target role, create a tailored CV emphasizing relevant experience
-2. Optimize keywords for ATS systems
-3. Format for 2-page PDF output
-4. **CHECKIN per CV:** Show summary, note page count, ask for review
+1. For each target role, create a RenderCV YAML file in `outputs/cv-versions/` emphasizing relevant experience
+2. Optimize keywords for ATS systems (use `settings.bold_keywords` for automatic bolding)
+3. Render with `rendercv render <file>.yaml` — produces PDF, HTML, PNG, and Markdown
+4. Check page count from the PNG output (each page = one PNG file)
+5. **CHECKIN per CV:** Show summary, note page count, ask for review
 
-**Output:** `outputs/cv-versions/` with MD, HTML, and PDF versions
+**YAML structure per CV:**
+- `cv:` — name, contact info, and sections (experience, education, skills, etc.)
+- `design:` — theme, colors, fonts, margins (start with `engineeringresumes` or `classic`)
+- `locale:` — language settings (default: English)
+- `settings:` — bold keywords, output paths
+
+**Output:** `outputs/cv-versions/` with `.yaml` source files and `rendercv_output/` containing PDF, PNG, HTML, MD, and Typst files.
 
 **After generating CVs, explain customization to the user:**
-- "Your CVs are in `outputs/cv-versions/` as PDF, HTML, and Markdown files."
-- "If you want to tweak the content, edit the `.md` file directly — it's just text with some formatting. Then I can regenerate the PDF for you."
-- "If you want to change the look and feel (fonts, colors, spacing), see [CUSTOMIZING-CV.md](CUSTOMIZING-CV.md) for a full guide, or just ask me to make changes."
+- "Your CVs are in `outputs/cv-versions/`. The `.yaml` file is your source — edit it to change content, and I'll re-render the PDF."
+- "If you want to change the look and feel (theme, fonts, colors, spacing), just ask me — or see [CUSTOMIZING-CV.md](CUSTOMIZING-CV.md) for a guide."
+- "Available themes: `classic`, `harvard`, `engineeringresumes`, `engineeringclassic`, `sb2nov`, `moderncv`"
 
 ### Phase 5: Job Applications
 When applying for a specific role, create a complete application package including a timeline tracker.
@@ -262,7 +275,7 @@ All user-specific settings are in `config.yaml`:
 - Ensure ATS keyword optimization
 
 ### Phase 4: Output
-- Generate Markdown, HTML, PDF versions
+- Generate RenderCV YAML, render to PDF/HTML/PNG via `rendercv render`
 - Create interview prep reports
 - Produce tailored cover letter templates
 
@@ -276,43 +289,40 @@ All user-specific settings are in `config.yaml`:
 - Tailor each version to specific job requirements
 - **Always checkin with the user** before moving to the next phase
 
-## CV Formatting Best Practices
+## CV Formatting Best Practices (RenderCV)
 
 ### Bold Highlighting Strategy
-Use **selective inline bold** to draw attention to key achievements:
+Use `**inline bold**` in highlight strings and `settings.bold_keywords` for automatic bolding:
 - Company names that carry weight
 - Impressive metrics ($100k+, 75%, 10M+ users)
 - Awards and acquisitions
 - Key differentiators (patents, team size, etc.)
 
-Avoid over-bolding - if everything is bold, nothing stands out.
+Avoid over-bolding — if everything is bold, nothing stands out.
 
-### Summary Bold Approach
-In the Professional Summary, bold phrases that capture unique value:
-- Years of experience and key outcomes
-- Core competencies and differentiators
-- Memorable facts that set you apart
+### Entry Types
+Use the right entry type for each section:
+- `ExperienceEntry` (company + position) for jobs
+- `EducationEntry` (institution + area) for degrees
+- `NormalEntry` (name) for projects, awards
+- `OneLineEntry` (label + details) for skills
+- `BulletEntry` (bullet) for simple lists
 
 ### Page Layout
-- Use `<!-- pagebreak -->` to force page breaks before major sections
-- Place page breaks before role transitions
-- Test PDF output to ensure clean 2-page fit
+- RenderCV handles page breaks automatically via `design.sections.allow_page_break` and `design.entries.allow_page_break`
+- Adjust margins via `design.page.*_margin` (default: 0.7in)
+- Check page count from PNG output (one file per page)
+- Target 2 pages maximum
 
-### Section Spacing
-- Use `---` dividers between bottom sections (Technical Skills, Speaking, Education, Recognition)
-- H2 margins: 18px top, 6px bottom
-- H3 margins: 14px top, 4px bottom
-- HR margins: 10px (reduced from default)
-
-### Bullet Points
-- Use `-` or `*` markers (both supported)
-- Keep bullets concise - one line each when possible
-- Group related bullets under H4 subheadings
+### YAML Hygiene
+- **Always quote strings containing colons** — most common YAML error
+- Phone numbers must be E.164 format (`+15551234567`)
+- Use `start_date`/`end_date` (YYYY-MM format) for date ranges, `"present"` for current roles
+- Section keys in `snake_case` auto-capitalize: `work_experience` → "Work Experience"
 
 ### Recognition Quotes
-- Include 2-3 quotes from diverse sources (CEO, direct report, client/peer)
-- Use blockquote format: `> "Quote" — **Name, Title**`
-- Place at end of CV for strong closing impression
+- Use `TextEntry` (plain strings) in a dedicated section
+- Format as: `"\"Quote\" — **Name, Title**"`
 
 ## Commands
 
@@ -320,9 +330,33 @@ In the Professional Summary, bold phrases that capture unique value:
 # Install dependencies
 npm install
 
+# Install RenderCV (if not already installed)
+uv tool install "rendercv[full]"
+
 # Convert a Word CV to markdown (creates .md and .txt)
 node scripts/read-docx.js sources/current-cv/my-cv.docx
 
+# Render a CV from YAML (generates PDF, HTML, PNG, MD, Typst)
+rendercv render outputs/cv-versions/my-cv.yaml
+
+# Render with custom output folder
+rendercv render outputs/cv-versions/my-cv.yaml --output-folder outputs/cv-versions/rendercv_output
+
+# Render only PNG (quick preview / page count check)
+rendercv render my-cv.yaml --dont-generate-pdf --dont-generate-html --dont-generate-markdown
+
+# Watch mode — auto-re-render on YAML changes
+rendercv render my-cv.yaml --watch
+
+# Create a new starter YAML
+rendercv new "Full Name" --theme engineeringresumes
+```
+
+### Legacy Fallback (make-cv.js)
+
+The original Markdown-to-PDF pipeline is still available if RenderCV is not installed or you prefer working in Markdown:
+
+```bash
 # Generate HTML from markdown CV
 node scripts/make-cv.js outputs/cv-versions/my-cv.md
 
@@ -332,7 +366,7 @@ node scripts/make-cv.js outputs/cv-versions/my-cv.md --pdf
 
 ## CV Customization
 
-See [CUSTOMIZING-CV.md](CUSTOMIZING-CV.md) for how to change fonts, colors, spacing, margins, and layout.
+See [CUSTOMIZING-CV.md](CUSTOMIZING-CV.md) for how to change themes, fonts, colors, spacing, margins, and layout with RenderCV.
 
 ## Quick Start - Add Your Materials
 

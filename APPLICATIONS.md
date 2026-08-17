@@ -24,9 +24,12 @@ outputs/applications/
     ├── job-description.md      # Parsed JD with keywords
     ├── company-research.md     # Background research
     ├── timeline.md             # Application progress tracker
-    ├── [Your Name].md          # Tailored CV (markdown)
-    ├── [Your Name].html        # Tailored CV (HTML)
-    ├── [Your Name].pdf         # Tailored CV (PDF, ≤2 pages)
+    ├── [Your Name].yaml        # Tailored CV (RenderCV YAML source)
+    ├── rendercv_output/        # Generated outputs from RenderCV
+    │   ├── [Your Name].pdf     # PDF (≤2 pages)
+    │   ├── [Your Name].html    # HTML version
+    │   ├── [Your Name]_*.png   # PNG per page (for preview)
+    │   └── [Your Name].md      # Markdown version
     ├── cover-letter-short.md   # 1 paragraph version
     ├── cover-letter-long.md    # 3-4 paragraph version
     └── application-notes.md    # Form answers, interview prep
@@ -62,6 +65,11 @@ Match JD requirements to existing CV versions. If no version is a good match, cr
 
 ### 5. Generate Outputs
 ```bash
+# Primary: RenderCV (produces PDF, HTML, PNG, MD)
+rendercv render "outputs/applications/{company}/[Your Name].yaml" \
+  --output-folder "outputs/applications/{company}/rendercv_output"
+
+# Legacy fallback: make-cv.js (if RenderCV is not available)
 cd outputs/applications/{company}/
 node ../../scripts/make-cv.js "[Your Name].md" --pdf
 ```

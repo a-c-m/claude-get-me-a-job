@@ -10,6 +10,8 @@ You install one thing. Claude installs the rest.
 - A **Claude Pro or Team plan** ($20/month) — the free tier doesn't have enough capacity. See [claude.ai/pricing](https://claude.ai/pricing)
 - Your current CV (PDF or Word document) — have this ready on your computer
 
+> **Note:** Claude will automatically check for and help you install any required tools (Node.js, Git, RenderCV) during setup. You don't need to install anything manually except Claude Code itself.
+
 ---
 
 ## Step 1: Install Claude Code (the only thing you install yourself)
@@ -74,14 +76,14 @@ Please guide me conversationally — I don't want to edit config files manually.
 
 That's it. From here, **Claude does everything**:
 
-1. **Checks your system** — if Git or Node.js aren't installed, Claude walks you through installing them step by step
+1. **Checks your system** — if Git, Node.js, or RenderCV aren't installed, Claude walks you through installing them step by step
 2. **Downloads the toolkit** — clones the code and installs dependencies
 3. **Asks you questions** — your name, LinkedIn, what roles you're targeting
 4. **Asks for your CV** — you just drop the file into the folder it tells you
 5. **Gathers data** — crawls your LinkedIn, blog, and any URLs you share
 6. **Shows you what it found** — and asks you to confirm before continuing
 7. **Interviews you** — asks about your achievements to fill gaps
-8. **Generates your CVs** — tailored versions for each role you're targeting
+8. **Generates your CVs** — publication-quality PDFs tailored for each role using RenderCV
 
 ### Tips
 
@@ -125,18 +127,22 @@ You can say things like:
 
 ## Troubleshooting
 
-### Claude can't install Git or Node
+### Claude can't install Git, Node, or RenderCV
 If Claude has trouble installing these automatically, you can install them manually:
 - **Node.js:** Go to [nodejs.org](https://nodejs.org), click the green LTS button, run the installer
 - **Git (Mac):** Open Terminal and type `git --version` — you'll get a popup to install developer tools. Click Install.
 - **Git (Windows):** Go to [git-scm.com](https://git-scm.com), download and run the installer
+- **RenderCV:** Prefer `uv tool install "rendercv[full]"` or `pipx install "rendercv[full]"` in your terminal. As a last resort, use `pip install "rendercv[full]"` inside a virtual environment. Requires Python 3.10+.
 
 Then tell Claude "I've installed them, please continue."
 
 ### "npm install" fails
 Close and reopen Claude Code, then ask Claude to try again. If it keeps failing, check that Node.js is installed (`node --version` in a terminal).
 
-### PDF doesn't generate
+### PDF doesn't generate (RenderCV)
+Run `rendercv render your-cv.yaml` manually and check the error output. Common issues: unquoted colons in YAML strings, invalid phone number format, or missing Python/Typst. Ask Claude for help.
+
+### PDF doesn't generate (legacy make-cv.js)
 The first PDF takes longer because it downloads a browser engine. If it fails, ask Claude to run `npx playwright install chromium` and try again.
 
 ### I want to start over
