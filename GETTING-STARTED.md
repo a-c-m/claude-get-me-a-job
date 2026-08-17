@@ -132,7 +132,7 @@ If Claude has trouble installing these automatically, you can install them manua
 - **Node.js:** Go to [nodejs.org](https://nodejs.org), click the green LTS button, run the installer
 - **Git (Mac):** Open Terminal and type `git --version` — you'll get a popup to install developer tools. Click Install.
 - **Git (Windows):** Go to [git-scm.com](https://git-scm.com), download and run the installer
-- **RenderCV:** Run `pip install "rendercv[full]"` or `pipx install "rendercv[full]"` in your terminal. Requires Python 3.10+.
+- **RenderCV:** Prefer `uv tool install "rendercv[full]"` or `pipx install "rendercv[full]"` in your terminal. As a last resort, use `pip install "rendercv[full]"` inside a virtual environment. Requires Python 3.10+.
 
 Then tell Claude "I've installed them, please continue."
 
