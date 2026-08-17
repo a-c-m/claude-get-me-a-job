@@ -314,7 +314,7 @@ cv:
     username: rendercv
   custom_connections:
   sections:
-    Welcome to RenderCV:
+    "Welcome to RenderCV:":
     - RenderCV reads a CV written in a YAML file, and generates a PDF with 
       professional typography.
     - Each section title is arbitrary.
