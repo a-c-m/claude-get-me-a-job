@@ -30,7 +30,7 @@ A career development toolkit that helps people improve their CV, LinkedIn profil
      - Mac: "Type `git --version` in the terminal — you'll probably get a popup asking to install developer tools. Click Install and wait a few minutes."
      - Windows: "Go to git-scm.com, click Download for Windows, run the installer, and click Next through each step."
      - After they install it, verify with `git --version` again.
-   - If **RenderCV is missing**: Install it using `uv tool install "rendercv[full]"`. If `uv` is not available, use `pipx install "rendercv[full]"`. If neither is available, install uv first: `curl -LsSf https://astral.sh/uv/install.sh | sh` (Mac/Linux) or `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"` (Windows).
+   - If **RenderCV is missing**: Install it using `uv tool install "rendercv[full]"`. If `uv` is not available, use `pipx install "rendercv[full]"`. If neither is available, install uv first by following the official installation instructions at https://docs.astral.sh/uv/getting-started/installation/ (prefer your OS package manager when available, and only run installer scripts from URLs you trust).
    - If **npm install** hasn't been run yet, run it now.
    - Keep the tone friendly and reassuring — "This is a one-time setup, takes about 5 minutes."
    - Point them to [GETTING-STARTED.md](GETTING-STARTED.md) if they want more detailed instructions.
