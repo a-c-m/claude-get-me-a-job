@@ -147,7 +147,7 @@ All text fields support inline Markdown:
 
 ```yaml
 # WRONG:
-- "Relevant coursework: Distributed Systems"   # Actually this is fine (already quoted)
+- Relevant coursework: Distributed Systems    # Breaks YAML!
 
 # WRONG:
 highlights:
