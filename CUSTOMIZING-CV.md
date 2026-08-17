@@ -162,7 +162,7 @@ highlights:
 
 ```yaml
 highlights:
-  - Main bullet point
+  - - Main bullet point
     - Sub-bullet 1
     - Sub-bullet 2
 ```
