@@ -243,9 +243,9 @@ Use `*Name*` (single asterisks, italic) to highlight the CV owner in author list
 
 ```yaml
 highlights:
-  - Main bullet point
-    - Sub-bullet 1
-    - Sub-bullet 2
+  - - Main bullet point
+    - - Sub-bullet 1
+      - Sub-bullet 2
 ```
 
 ## CLI Reference
