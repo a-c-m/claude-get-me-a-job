@@ -101,7 +101,7 @@ class Cv(BaseModelWithoutExtraKeys):
 ```python
 type SocialNetworkName = Literal['LinkedIn', 'GitHub', 'GitLab', 'IMDB', 'Instagram', 'ORCID', 'Mastodon', 'StackOverflow', 'ResearchGate', 'YouTube', 'Google Scholar', 'Telegram', 'WhatsApp', 'Leetcode', 'X', 'Bluesky', 'Reddit']
 
-available_social_networks = get_args(SocialNetworkName.__value__)
+available_social_networks = get_args(SocialNetworkName)
 
 class SocialNetwork(BaseModelWithoutExtraKeys):
     network: SocialNetworkName = pydantic.Field()
