@@ -164,7 +164,7 @@ cv:
       - This is a free-form paragraph about me.
 ```
 
-Entries also accept arbitrary extra keys (silently ignored during rendering). A typo in a field name will NOT cause an error.
+Entries do not accept unknown extra keys; any unexpected field will cause a validation error. This helps catch typos in field names early when parsing your YAML.
 
 ### Design (`design`)
 
